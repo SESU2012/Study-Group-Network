@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>StudyHub - Connect, Collaborate, Succeed</title>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">📚 StudyHub</div>
+            <div class="nav-links">
+                <a href="#" onclick="showSection('feed')">Feed</a>
+                <a href="#" onclick="showSection('groups')">Groups</a>
+                <a href="#" onclick="showSection('resources')">Resources</a>
+            </div>
+            <div class="user-section">
+                <button class="btn btn-primary" onclick="openModal('createGroup')">+ Create Group</button>
+                <div class="user-avatar" onclick="toggleUserMenu()">JS</div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <div class="hero">
+                <h1>Welcome back, John! 👋</h1>
+                <p>Connect with your study groups, share resources, and ace your exams together.</p>
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Groups Joined</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Resources Shared</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Study Points</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="sidebar">
+                    <h2 class="widget-title">My Study Groups</h2>
+                    <div class="group-item" onclick="selectGroup('calculus')">
+                        <div class="group-name">📐 Calculus II</div>
+                        <div class="group-members">42 members</div>
+                    </div>
+                    <div class="group-item" onclick="selectGroup('physics')">
+                        <div class="group-name">⚛️ Physics 101</div>
+                        <div class="group-members">38 members</div>
+                    </div>
+                    <div class="group-item" onclick="selectGroup('cs')">
+                        <div class="group-name">💻 Computer Science</div>
+                        <div class="group-members">65 members</div>
+                    </div>
+                    <div class="group-item" onclick="selectGroup('bio')">
+                        <div class="group-name">🧬 Biology Lab</div>
+                        <div class="group-members">29 members</div>
+                    </div>
+                    <button class="btn btn-secondary" style="width: 100%; margin-top: 15px;" onclick="openModal('joinGroup')">Join More Groups</button>
+                </div>
+
+                <div class="feed">
+                    <h2 class="widget-title">Study Feed</h2>
+                    <div class="create-post">
+                        <textarea id="postContent" placeholder="Share notes, ask questions, or upload study materials..."></textarea>
+                        <div class="post-actions">
+                            <button class="btn btn-primary" onclick="createPost()">📝 Post</button>
+                            <button class="btn btn-secondary" onclick="attachFile()">📎 Attach File</button>
+                        </div>
+                    </div>
+
+                    <div id="postsContainer">
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-avatar">SE</div>
+                                <div class="post-info">
+                                    <h3>Sarah Edwards</h3>
+                                    <div class="post-time">2 hours ago • Calculus II</div>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                Just finished my notes on integration by parts! These really helped me understand the concept. Hope they help you too! 📚
+                            </div>
+                            <div class="post-resource">
+                                <div class="resource-icon">📄</div>
+                                <div>
+                                    <strong>Integration_Notes.pdf</strong>
+                                    <div style="font-size: 13px; color: #999;">2.4 MB</div>
+                                </div>
+                            </div>
+                            <div class="post-actions-bar">
+                                <button class="action-btn">👍 24 Likes</button>
+                                <button class="action-btn">💬 8 Comments</button>
+                                <button class="action-btn">📥 Download</button>
+                            </div>
+                        </div>
+
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-avatar">MJ</div>
+                                <div class="post-info">
+                                    <h3>Michael Johnson</h3>
+                                    <div class="post-time">5 hours ago • Physics 101</div>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                Study session tomorrow at 3 PM in the library! We'll be covering Newton's laws and motion problems. All are welcome! ⚡
+                            </div>
+                            <div class="post-actions-bar">
+                                <button class="action-btn">👍 31 Likes</button>
+                                <button class="action-btn">💬 12 Comments</button>
+                                <button class="action-btn">📅 Add to Calendar</button>
+                            </div>
+                        </div>
+
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-avatar">EK</div>
+                                <div class="post-info">
+                                    <h3>Emma Kim</h3>
+                                    <div class="post-time">1 day ago • Computer Science</div>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                Created a Python cheat sheet for data structures. This covers arrays, linked lists, stacks, and queues with code examples! 🐍
+                            </div>
+                            <div class="post-resource">
+                                <div class="resource-icon">📄</div>
+                                <div>
+                                    <strong>Python_DataStructures.pdf</strong>
+                                    <div style="font-size: 13px; color: #999;">1.8 MB</div>
+                                </div>
+                            </div>
+                            <div class="post-actions-bar">
+                                <button class="action-btn">👍 45 Likes</button>
+                                <button class="action-btn">💬 15 Comments</button>
+                                <button class="action-btn">📥 Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget">
+                    <h2 class="widget-title">Trending Topics</h2>
+                    <div class="trending-topic">
+                        <div class="topic-tag">#FinalExams</div>
+                        <div class="topic-count">128 posts</div>
+                    </div>
+                    <div class="trending-topic">
+                        <div class="topic-tag">#StudyTips</div>
+                        <div class="topic-count">94 posts</div>
+                    </div>
+                    <div class="trending-topic">
+                        <div class="topic-tag">#GroupStudy</div>
+                        <div class="topic-count">76 posts</div>
+                    </div>
+                    <div class="trending-topic">
+                        <div class="topic-tag">#MidtermPrep</div>
+                        <div class="topic-count">52 posts</div>
+                    </div>
+                    <div class="trending-topic">
+                        <div class="topic-tag">#NotesSharing</div>
+                        <div class="topic-count">48 posts</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Group Modal -->
+    <div id="createGroupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('createGroup')">&times;</span>
+            <h2>Create Study Group</h2>
+            <form onsubmit="submitCreateGroup(event)">
+                <div class="form-group">
+                    <label>Group Name</label>
+                    <input type="text" required placeholder="e.g., Advanced Chemistry">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea rows="3" required placeholder="Describe your study group..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" required placeholder="e.g., Chemistry, Math, Biology">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Group</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Join Group Modal -->
+    <div id="joinGroupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('joinGroup')">&times;</span>
+            <h2>Discover Study Groups</h2>
+            <div class="form-group">
+                <input type="text" placeholder="Search groups..." onkeyup="searchGroups(this.value)">
+            </div>
+            <div style="max-height: 300px; overflow-y: auto;">
+                <div class="group-item">
+                    <div class="group-name">📖 English Literature</div>
+                    <div class="group-members">51 members</div>
+                </div>
+                <div class="group-item">
+                    <div class="group-name">🎨 Art History</div>
+                    <div class="group-members">33 members</div>
+                </div>
+                <div class="group-item">
+                    <div class="group-name">🌍 World Geography</div>
+                    <div class="group-members">47 members</div>
+                </div>
+                <div class="group-item">
+                    <div class="group-name">🎵 Music Theory</div>
+                    <div class="group-members">28 members</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ <script src="script.js"></script>
+</body>
+</html>
